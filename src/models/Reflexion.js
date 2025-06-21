@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Reflexion = sequelize.define("Reflexion", {
     audio_url: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(500),
       allowNull: true,
     },
     texto: {
@@ -12,6 +12,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATEONLY,
       defaultValue: DataTypes.NOW,
     },
+    isActive: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+      },
   });
   return Reflexion;
 };
