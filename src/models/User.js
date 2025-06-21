@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define("User", {
-    nombre: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -16,11 +16,19 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    rol: {
+    role: {
       type: DataTypes.ENUM("admin", "participante"),
       allowNull: false,
       defaultValue: "participante",
     },
+    imageUrl: {
+        type: DataTypes.STRING(100),
+        allowNull: true,
+      },
+    isActive: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+      },
   });
 
   return User;
