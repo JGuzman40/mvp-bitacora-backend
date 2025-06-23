@@ -28,7 +28,7 @@ const sendAdminWelcomeEmail = async ({ name, email, password }) => {
   await transporter.sendMail(mailOptions);
 };
 
-const sendParticipantWelcomeEmail = async ({ name, email }) => {
+const sendParticipantWelcomeEmail = async ({ name, email, password }) => {
   const mailOptions = {
     from: `"Bitácora Microhuasca" <${process.env.EMAIL_USER}>`,
     to: email,

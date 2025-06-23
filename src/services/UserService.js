@@ -38,9 +38,12 @@ const createUserService = async (data) => {
   if (role === "admin") {
     await sendAdminWelcomeEmail({ name, email, password });
   } else if (role === "participante") {
-    await sendParticipantWelcomeEmail({ name, email });
+    try {
+      await sendParticipantWelcomeEmail({ name, email, password });
+    } catch (err) {
+      console.error("Error al enviar correo a participante:", err.message);
+    }
   }
-
   return newUser;
 };
 
