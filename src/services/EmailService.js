@@ -36,6 +36,8 @@ const sendParticipantWelcomeEmail = async ({ name, email }) => {
     html: `
       <h2>¡Hola, ${name}!</h2>
       <p>Has sido registrado como participante en Bitácora Microhuasca.</p>
+      <p><strong>Correo:</strong> ${email}</p>
+      <p><strong>Contraseña:</strong> ${password}</p>
       <p>Puedes ingresar a la aplicación y comenzar a registrar tus reflexiones.</p>
       <br/>
       <p>Saludos,</p>
