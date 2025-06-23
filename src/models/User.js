@@ -1,5 +1,11 @@
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define("User", {
+    id: {
+      type: DataTypes.UUID,
+      defaultValue:DataTypes.UUIDV4,
+      primaryKey: true,
+      allowNull: false,
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -22,13 +28,17 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: "participante",
     },
     imageUrl: {
-        type: DataTypes.STRING(100),
+        type: DataTypes.STRING(500),
         allowNull: true,
       },
     isActive: {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
       },
+       adminId: {
+      type: DataTypes.UUID,
+      allowNull: true,
+    },
   });
 
   return User;

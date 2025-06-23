@@ -11,7 +11,7 @@ const storage = new CloudinaryStorage({
   },
 });
 
-console.log("📦 Multer y Cloudinary configurados para:", cloudinary.config().cloud_name);
+// console.log("📦 Multer y Cloudinary configurados para:", cloudinary.config().cloud_name);
 const upload = multer({ storage });
 
 module.exports = upload;

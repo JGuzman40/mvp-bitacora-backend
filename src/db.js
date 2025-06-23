@@ -28,6 +28,18 @@ modelDefiners.forEach((model) => model(sequelize, DataTypes));
 // Relacionar modelos
 const { User, Reflexion } = sequelize.models;
 
+// 🔁 Asociación autorreferenciada: admin tiene muchos participantes
+User.hasMany(User, {
+  foreignKey: "adminId",
+  as: "participantes",
+});
+
+User.belongsTo(User, {
+  foreignKey: "adminId",
+  as: "admin",
+});
+
+// Usuario y Reflexiones
 User.hasMany(Reflexion, { foreignKey: "usuarioId", as: "reflexiones" });
 Reflexion.belongsTo(User, { foreignKey: "usuarioId", as: "usuario" });
 
