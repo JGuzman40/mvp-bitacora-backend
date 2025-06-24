@@ -7,7 +7,7 @@ const storage = new CloudinaryStorage({
   params: {
     folder: "micromvp", // Carpeta en Cloudinary donde se guardarán
     resource_type: "auto",       // Detecta automáticamente si es audio
-    allowed_formats: ["mp3", "wav", "m4a", "ogg"], // Formatos permitidos
+    allowed_formats: ["mp3", "wav", "m4a", "ogg", "webm"], // Formatos permitidos
   },
 });
 

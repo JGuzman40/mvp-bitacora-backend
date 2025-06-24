@@ -11,12 +11,15 @@ const catchAsync = require("../utils/catchAsync");
 const createReflexion = async (req, res) => {
     console.log("🟢 REQ.BODY:", req.body);
   console.log("🟡 REQ.FILE:", req.file);
+  
   const audio_url = req.file ? req.file.path : null;
+  const usuarioId = req.body.usuarioId || req.body["usuarioId"];
+  console.log("🔎 Usuario ID recibido:", usuarioId);
   const data = {
     ...req.body,
     audio_url,
+    usuarioId,
   };
-
   const newReflexion = await createReflexionService(data);
   res.status(201).json({
     message: "Reflexión creada exitosamente",

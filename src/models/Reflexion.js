@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     isActive: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
-    },
+    },    
   });
 
   return Reflexion;

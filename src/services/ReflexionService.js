@@ -1,11 +1,12 @@
 const { Reflexion } = require("../db");
 
 // Crear nueva reflexión
-const createReflexionService = async ({ audio_url, texto, fecha }) => {
+const createReflexionService = async ({ audio_url, texto, fecha, usuarioId }) => {
   const nuevaReflexion = await Reflexion.create({
     audio_url,
     texto,
     fecha, // opcional, si no se envía toma el default
+    usuarioId,
   });
   return nuevaReflexion;
 };
