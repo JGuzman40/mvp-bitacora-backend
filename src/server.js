@@ -7,7 +7,9 @@ const routes = require("./routes");
 const server = express();
 
 // Middlewares básicos
-server.use(cors());
+server.use(cors({
+  origin: ["http://localhost:5173","*"]
+}));
 server.use(morgan("dev"));
 server.use(express.json());
 

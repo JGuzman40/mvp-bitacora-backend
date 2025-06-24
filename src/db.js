@@ -10,6 +10,12 @@ const sequelize = new Sequelize(
   {
     dialect: "postgres",
     logging: false,
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: true, // ⚠️ solo para desarrollo, en producción idealmente true
+      }
+    }
   }
 );
 
