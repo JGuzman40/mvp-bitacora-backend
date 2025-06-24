@@ -2,9 +2,12 @@ const {
   createReflexionService,
   getAllReflexionesService,
   getReflexionByIdService,
+  getReflexionesPorUsuarioService,
   updateReflexionService,
+  updateCompartirConTerapeutaService,
   deleteReflexionService,
-} = require("../services/ReflexionService");
+}
+ = require("../services/ReflexionService");
 
 const catchAsync = require("../utils/catchAsync");
 
@@ -37,6 +40,13 @@ const getReflexionById = async (req, res) => {
   res.status(200).json(reflexion);
 };
 
+const getReflexionesPorUsuario = async (req, res) => {
+  const { usuarioId } = req.params;
+
+  const reflexiones = await getReflexionesPorUsuarioService(usuarioId);
+  res.status(200).json(reflexiones);
+};
+
 const updateReflexion = async (req, res) => {
   const audio_url = req.file ? req.file.path : null;
   const updatedReflexion = await updateReflexionService(req.params.id, {
@@ -46,6 +56,18 @@ const updateReflexion = async (req, res) => {
   res.status(200).json({
     message: "Reflexión actualizada exitosamente",
     reflexion: updatedReflexion,
+  });
+};
+
+const updateCompartirConTerapeuta = async (req, res) => {
+  const { id } = req.params;
+  const { compartirConTerapeuta } = req.body;
+
+  const updated = await updateCompartirConTerapeutaService(id, compartirConTerapeuta);
+
+  res.status(200).json({
+    message: "Preferencia de compartir con terapeuta actualizada",
+    reflexion: updated,
   });
 };
 
@@ -60,6 +82,8 @@ module.exports = {
   createReflexion: catchAsync(createReflexion),
   getAllReflexiones: catchAsync(getAllReflexiones),
   getReflexionById: catchAsync(getReflexionById),
+  getReflexionesPorUsuario: catchAsync(getReflexionesPorUsuario),
   updateReflexion: catchAsync(updateReflexion),
+  updateCompartirConTerapeuta: catchAsync(updateCompartirConTerapeuta),
   deleteReflexion: catchAsync(deleteReflexion),
 };

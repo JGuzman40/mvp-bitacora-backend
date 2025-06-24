@@ -29,6 +29,17 @@ const getReflexionByIdService = async (id) => {
   return reflexion;
 };
 
+const getReflexionesPorUsuarioService = async (usuarioId) => {
+  const reflexiones = await Reflexion.findAll({
+    where: {
+      usuarioId,
+      isActive: true,
+    },
+    order: [["fecha", "DESC"]],
+  });
+  return reflexiones;
+};
+
 // Actualizar reflexión por ID
 const updateReflexionService = async (id, data) => {
   const reflexion = await Reflexion.findByPk(id);
@@ -42,6 +53,16 @@ const updateReflexionService = async (id, data) => {
   reflexion.texto = texto || reflexion.texto;
   reflexion.fecha = fecha || reflexion.fecha;
 
+  await reflexion.save();
+  return reflexion;
+};
+const updateCompartirConTerapeutaService = async (id, compartirConTerapeuta) => {
+  const reflexion = await Reflexion.findByPk(id);
+  if (!reflexion || !reflexion.isActive) {
+    throw new Error("Reflexión no encontrada o inactiva");
+  }
+
+  reflexion.compartirConTerapeuta = compartirConTerapeuta;
   await reflexion.save();
   return reflexion;
 };
@@ -61,6 +82,8 @@ module.exports = {
   createReflexionService,
   getAllReflexionesService,
   getReflexionByIdService,
+  getReflexionesPorUsuarioService,
   updateReflexionService,
+  updateCompartirConTerapeutaService,
   deleteReflexionService,
 };
