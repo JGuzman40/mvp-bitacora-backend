@@ -8,7 +8,7 @@ const server = express();
 
 // Middlewares básicos
 server.use(cors({
-  origin: ["http://localhost:5173","*"]
+  origin: ["http://localhost:5173","https://inquisitive-vacherin-c4a28e.netlify.app"]
 }));
 server.use(morgan("dev"));
 server.use(express.json());
